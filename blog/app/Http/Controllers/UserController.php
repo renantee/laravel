@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Post;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -48,6 +49,7 @@ class UserController extends Controller
             ->withPosts($posts)
             ->withTitle($title);
     }
+
     /*
     * Display draft posts of a currently active user
     * 
@@ -70,7 +72,11 @@ class UserController extends Controller
     }
 
     /**
-     * profile for user
+     * Display user profile
+     *
+     * @param Request $request
+     * @param int $id
+     * @return view
      */
     public function profile(Request $request, $id) 
     {
@@ -92,5 +98,16 @@ class UserController extends Controller
         $data['latest_comments'] = $data['user'] -> comments -> take(5);
 
         return view('admin.profile', $data);
+    }
+
+    /**
+     * Logout user
+     *
+     * @return redirect
+     */
+    public function logout() {
+        Auth::logout();
+
+        return redirect('/auth/login');
     }
 }

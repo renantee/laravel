@@ -17,8 +17,6 @@ Route::get('/', 'PostController@index');
 Route::get('/home', ['as' => 'home', 'uses' => 'PostController@index']);
 
 //authentication
-// Route::resource('auth', 'Auth\AuthController');
-// Route::resource('password', 'Auth\PasswordController');
 Route::get('/logout', 'UserController@logout');
 Route::group(['prefix' => 'auth'], function () {
     Auth::routes();
