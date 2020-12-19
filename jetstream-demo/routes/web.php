@@ -22,4 +22,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('blog', Blogs::class);
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('blog', Blogs::class);
+    Route::get('search-box', function () {
+        return view('search-box');
+    });
+});
