@@ -12,7 +12,7 @@
 
         <section>
             @if($image)
-            <img src={{$image}} width="200" />
+            <img src={{$image}} width="100" />
             @endif
             <input type="file" id="image" wire:change="$emit('fileChoosen')">
         </section>
@@ -33,6 +33,9 @@
                 <i class="fas fa-times text-red-200 hover:text-red-600 cursor-pointer" wire:click="remove({{ $comment->id }})"></i>
             </div>
             <p class="text-gray-800">{{ $comment->body }}</p>
+            @if($comment->image)
+            <img src="{{$comment->imagePath}}" width="100" />
+            @endif
         </div>
         @endforeach
 
