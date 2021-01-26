@@ -25,6 +25,7 @@
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
     },
     "dependencies": {
-        "laravel-mix-postcss-config": "^1.4.0"
+        "laravel-mix-postcss-config": "^1.4.0",
+        "turbolinks": "^5.2.0"
     }
 }

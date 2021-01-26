@@ -6,6 +6,7 @@ use App\Models\Comment;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -42,7 +43,7 @@ class Comments extends Component
         $this->validate(['newComment' => 'required|max:255']);
         $image = $this->storeImage();
         $createdComment = Comment::create([
-            'body' => $this->newComment, 'user_id' => 1,
+            'body' => $this->newComment, 'user_id' => Auth::user()->id,
             'image' => $image,
             'support_ticket_id' => $this->ticketId
         ]);
